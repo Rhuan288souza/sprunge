@@ -1,0 +1,125 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+#include<time.h>
+int menu();
+int main(){
+	int op,modo,x,a,g=0,p=0,e=0,g2=0,p2=0,e2=0,pontVitorias,pontVitorias2;
+	int qtd;
+	char j,k,jogada,jogada2,pc[3]={'r','p','t'};
+	do{
+		op = menu();
+		switch(op){
+			case 1:
+				printf("Selecione a quantidade de rodada: ");
+				scanf("%d", &qtd);
+				printf("Você selecionou: Player vs Player\nUm jogo de %d rodadas está começando...\n", qtd);
+				int i;
+				char player1, player2;
+				for(i = 0; i < qtd;i++){
+					printf("Player 1: ");
+					player1 = getch();
+					printf("*\n");
+					printf("Player 2: ");
+					player2 = getch();
+					printf("*\n");
+					switch(player1){
+						case 'R':
+							if(player2 == 'P')
+								printf("Player 2 ganhou a rodada...\n");
+							else if(player2 == 'T')
+								printf("Player 1 ganhou a rodada...\n");
+							else if(player2 == 'R')
+								printf("Ocorreu um empate...\n");
+							else
+								printf("Jogada inválida...\n");
+							break;
+						case 'P':
+							if(player2 == 'T')
+								printf("Player 2 ganhou a rodada...\n");
+							else if(player2 == 'R')
+								printf("Player 1 ganhou a rodade...\n");
+							else if(player2 == 'P')
+								printf("Ocorreu um empate...\n");
+							else
+								printf("Jogada inválida...\n");
+							break;
+						case 'T':
+							if(player2 == 'R')
+								printf("Player 2 ganhou a rodada...\n");
+							else if(player2 == 'P')
+								printf("Player 1 ganhou a rodade...\n");
+							else if(player2 == 'T')
+								printf("Ocorreu um empate...\n");
+							else
+								printf("Jogada inválida...\n");
+							break;
+						default:
+							printf("Jogada inválida...\n");
+							
+					}
+				}
+				break;
+
+			case 2:
+				srand(time(NULL)); // 
+  printf("digite r para pedra p para papel  e t para tesoura \n"); // Mostra ao usuário as opções r para pedra p para papel e t para tesoura
+  for(a=1;a<5;a++)
+  {
+        x= rand()%3;
+        printf("digite sua jogada:... \n "); /*pedra r, papel p , tesoura t*/
+
+       do
+        {
+           scanf("%c",&j);;/*ler o que usuario digitou*/
+        }while(j=='\n');
+
+        printf("jogada do pc::.. %c\n ",pc[x]); /*pedra p, papel e , tesoura t*/
+
+        if((j=='r'&& pc[x]=='t') ||(j=='t' && pc[x] == 'p' ) || (j == 'p' && pc[x] == 'r')) // Comparação dos valores digitados pelo usuário em relação às jogadas do pc e definição das condições de vitória
+        {
+            printf("parabens voce venceu\n"); // Exibe a mensagem de vitória para o usuário
+            g++; // Aumenta mais 1 valor ao contador de vitórias
+        }
+        if((pc[x]=='r'&& j=='t') ||(pc[x]=='t' && j == 'p' ) || (pc[x]== 'p' && j == 'r')) // Comparação dos valores digitados pelo usuário em relação às jogadas do pc e definição das condições de derrota
+        {
+            printf("perdeu \n"); // Exibe a mensagem de derrota para o usuário
+            p++; // Aumenta mais 1 valor ao contador de derrotas;
+        }
+        if(j==pc[x]) // Compara se o valor digitado pelo usuário e o escolhido pelo computador são iguais
+        {
+            printf("empate \n"); // Mostra ao usuário a mensagem de empate
+            e++; // Aumenta mais 1 valor ao constador de empates/
+            
+        }
+  }
+   printf("placar: ganhou %d , perdeu: %d , empate: %d \n",g,p,e);	//Exibição do placar com os valores dos contadores de derrotas empates e vitórias
+	
+	
+ 
+		break;
+
+			case 3:
+				printf("Em construção...\n");
+			case 4:
+				printf("Saindo do sistema...\n");
+
+			default:
+				printf("Você digitou uma opção inválida.\n");
+		}
+	}while(op != 4);
+	
+	return 0;
+}
+
+int menu(){
+	printf("#####################################JanKenPo#####################################\n");
+	printf("R - Pedra\t P - Papel \t T - Tesousa\n");
+	printf("1. Player vs Player\n2. Player vs PC\n3. PC vs PC\n4. Sair\n");
+	char c;
+	do{
+		printf("Selecione: ");
+		c = getc(stdin);
+	}while(!(c >= '0' && c <= '9'));
+	return c - '0';
+}
