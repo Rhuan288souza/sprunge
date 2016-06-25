@@ -1,0 +1,84 @@
+#include<stdio.h> // inclusão da biblioteca de entrada e saída de dados
+#include<time.h> // inclusão da biblioteca para manipulação de datas e horários 
+#include<stdlib.h> // inclusão da biblioteca que contém a função srand
+#include<locale.h> // inclusão da biblioteca que permite definir a linguagem para lingua portuguesa, aceitando assim acentuação
+
+main () // função principal
+{
+	int o,x,a,g=0,p=0,e=0,g2=0,p2=0,e2=0,pontVitorias,pontVitorias2; // Declaração de variáveis do tipo inteiro 
+  	char j,k,jogada,jogada2,pc[3]={'r','p','t'};
+	
+	
+	setlocale(LC_ALL, "Portuguese");
+		printf("Bem vindo ao JoKenPo, escolha um dos modos de jogo:\n");		
+		printf("1. Modo com dois jogadores\n2. Modo contra o computador\n");
+		scanf("%d",&o);
+	if (o==1){
+	  	
+		printf("Jogador 1 digite sua jogada:... \n "); /*pedra r, papel p , tesoura t*/
+		scanf("%c",&j);   /*ler o que o jogador 1 digitou*/
+		setbuf(stdin,NULL); 
+        printf("Jogador 2 digite sua jogada:... \n "); /*pedra r, papel p , tesoura t*/
+        scanf("%c",&k);  /*ler o que o jogador 2 digitou*/
+         
+    if((j=='r'&& k=='t') ||(j=='t' && k == 'p' ) || (j == 'p' && k == 'r')) // Comparação dos valores digitados pelo usuário em relação às jogadas do pc e definição das condições de vitória
+        {
+            printf("Jogador 1 venceu\n"); // Exibe a mensagem de vitória para o usuário
+            g++; // Aumenta mais 1 valor ao contador de vitórias
+        }
+    if((k=='r'&& j=='t') ||(k=='t' && j == 'p' ) || (k== 'p' && j == 'r')) // Comparação dos valores digitados pelo usuário em relação às jogadas do pc e definição das condições de derrota
+        {
+            printf(" Jogador 2 venceu \n"); // Exibe a mensagem de derrota para o usuário
+            g2++; // Aumenta mais 1 valor ao contador de derrotas;
+        }
+    if(j==k) // Compara se o valor digitado pelo usuário e o escolhido pelo computador são iguais
+        {
+            printf("empate \n"); // Mostra ao usuário a mensagem de empate
+            e++; // Aumenta mais 1 valor ao constador de empates/
+            
+        }
+        
+       
+if (o == 2){
+	srand(time(NULL)); // 
+  printf("digite r para pedra p para papel  e t para tesoura \n"); // Mostra ao usuário as opções r para pedra p para papel e t para tesoura
+  for(a=1;a<5;a++)
+  {
+        x= rand()%3;
+        printf("digite sua jogada:... \n "); /*pedra r, papel p , tesoura t*/
+
+       do
+        {
+           scanf("%c",&j);;/*ler o que usuario digitou*/
+        }while(j=='\n');
+
+        printf("jogada do pc::.. %c\n ",pc[x]); /*pedra p, papel e , tesoura t*/
+
+        if((j=='r'&& pc[x]=='t') ||(j=='t' && pc[x] == 'p' ) || (j == 'p' && pc[x] == 'r')) // Comparação dos valores digitados pelo usuário em relação às jogadas do pc e definição das condições de vitória
+        {
+            printf("parabens voce venceu\n"); // Exibe a mensagem de vitória para o usuário
+            g++; // Aumenta mais 1 valor ao contador de vitórias
+        }
+        if((pc[x]=='r'&& j=='t') ||(pc[x]=='t' && j == 'p' ) || (pc[x]== 'p' && j == 'r')) // Comparação dos valores digitados pelo usuário em relação às jogadas do pc e definição das condições de derrota
+        {
+            printf("perdeu \n"); // Exibe a mensagem de derrota para o usuário
+            p++; // Aumenta mais 1 valor ao contador de derrotas;
+        }
+        if(j==pc[x]) // Compara se o valor digitado pelo usuário e o escolhido pelo computador são iguais
+        {
+            printf("empate \n"); // Mostra ao usuário a mensagem de empate
+            e++; // Aumenta mais 1 valor ao constador de empates/
+            
+        }
+  }
+   printf("placar: ganhou %d , perdeu: %d , empate: %d \n",g,p,e);	//Exibição do placar com os valores dos contadores de derrotas empates e vitórias
+	
+	system("PAUSE");	
+ 
+
+
+	}
+		}	
+			}	
+
+
